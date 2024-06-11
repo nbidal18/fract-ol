@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/07 15:11:18 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:34:37 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,54 @@
 
 # define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
+# define WIDTH	800
+# define HEIGHT	800
+
+#define BLACK				0x000000 //RGB(0, 0, 0)
+#define WHITE				0xFFFFFF //RGB(255, 255, 255)
+#define RED					0xFF0000 //RGB(255, 0, 0)
+#define GREEN				0x00FF00 //RGB(0, 255, 0)
+#define BLUE				0x0000FF //RGB(0, 0, 255)
+#define PSYCHEDELIC_PURPLE	0x660066 //deep purple
+
+typedef	struct	s_complex
+{
+	double	x; //real
+	double	y; //imaginary
+}				t_complex;
+
+typedef struct	s_image
+{
+	void	*image_ptr; //pointer to image struct
+	char	*pixel_ptr; //pointer to the actual pixels
+	int		bits_per_pixel;
+	int		endian;
+	int		line_len;
+}				t_image;
+
+typedef struct	s_fractal
+{
+	char	*name;
+	//mlx
+	void	*mlx_connection; //mlx_init()
+	void	*mlx_window; //mlx_new_window()
+	//image
+	t_image	image;
+	//hooks
+	double	escape_value; //hypoyenuse
+	int		iterations_definition; //affects image quality and speed
+}				t_fractal;
+
 //string utils
 int		ft_strncmp(char *str1, char *str2, int len);
 void	putstr_fd(char *str, int fd);
+//init
+void	fractal_init(t_fractal *fractal);
+//render
+void	fractal_render(t_fractal *fractal);
+//math utils
+double map(double unscaled_num, double new_min, double new_max, double old_max);
+t_complex	sum_complex(t_complex z1, t_complex z2);
+t_complex	square_complex(t_complex z);
 
 #endif

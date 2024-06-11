@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:43:58 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/07 15:11:52 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:33:57 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 int	main(int argc, char **argv)
 {
+	t_fractal	fractal;
 	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10) || argc == 4 && !ft_strncmp(argv[1], "julia", 5))
 	{
-		//start the program...
-		printf("good\n");
+		fractal.name = argv[1];
+		//1. kick in
+		fractal_init(&fractal);
+		//2. rendering on the window
+		fractal_render(&fractal);
+		//3. loop event listening for events like clicking
+		//mlx_loop(fractal.mlx_connection);//TODO
 	}
 	else
 	{
