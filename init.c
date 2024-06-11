@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:35:03 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 14:35:26 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:58:40 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	fractal_init(t_fractal *fractal)
 {
 	fractal->mlx_connection = mlx_init();
 	if (fractal->mlx_connection == NULL)
-		malloc_error();//TODO
+		malloc_error();
 	fractal->mlx_window = mlx_new_window(fractal->mlx_connection, WIDTH, HEIGHT, fractal->name);
 	if (fractal->mlx_window == NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:43:58 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 14:33:57 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:05:57 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		//2. rendering on the window
 		fractal_render(&fractal);
 		//3. loop event listening for events like clicking
-		//mlx_loop(fractal.mlx_connection);//TODO
+		mlx_loop(fractal.mlx_connection);
 	}
 	else
 	{

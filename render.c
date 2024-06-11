@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:09:37 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 14:33:06 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:07:06 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	{
 		z = sum_complex(square_complex(z), c);
 		//the value escaped? if hypotenuse > 2 it has escaped
-		if (((z.x * z.x) + (z.y * z.y)) > fractal->escape_value)
+		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 		{
 			color = map(i, BLACK, WHITE, fractal->iterations_definition);
 			my_pixel_put(x, y, &fractal->image, color);
@@ -48,7 +48,7 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		i++;
 	}
 	//if it comes here the point belongs to mandelbrot
-	my_pixel_put(x, y, &fractal->image, PSYCHEDELIC_PURPLE);
+	my_pixel_put(x, y, &fractal->image, WHITE);
 }
 
 void	fractal_render(t_fractal *fractal)
