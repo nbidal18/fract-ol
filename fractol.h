@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 14:34:37 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:22:09 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h> //for malloc and free
 # include <unistd.h> //for write
 # include <math.h>
+# include <X11/X.h>
 # include "minilibx-linux/mlx.h"
 
 # define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
@@ -70,5 +71,7 @@ void	fractal_render(t_fractal *fractal);
 double map(double unscaled_num, double new_min, double new_max, double old_max);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
+//hooks events
+int	key_handler(int keysym, t_fractal *fractal);
 
 #endif
