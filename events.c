@@ -25,6 +25,12 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->iterations_definition += 10;
 	else if (keysym == XK_minus)	
 		fractal->iterations_definition -= 10;
+	/* zoom with keyboard
+	else if (keysym == XK_i)	
+		fractal->zoom *= 0.95;
+	else if (keysym == XK_o)	
+		fractal->zoom *= 1.05;
+	*/
 	//refresh the image
 	fractal_render(fractal);
 	return (0);
