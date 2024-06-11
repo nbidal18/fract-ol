@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:09:37 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 15:07:06 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:30:15 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	z.x = 0;
 	z.y = 0;
 	//pixel coordinate x && y scaled
-	c.x = map(x, -2, 2, WIDTH); //WIDTH is 800, but shouldn't it be 799? //FIX
-	c.y = map(y, 2, -2, HEIGHT); //same here
+	c.x = map(x, -2, 2, WIDTH) + fractal->shift_x; //WIDTH is 800, but shouldn't it be 799? //FIX
+	c.y = map(y, 2, -2, HEIGHT) + fractal->shift_y; //same here
 	//how many times do we iterate z^2 + c
 	while(i < fractal->iterations_definition)
 	{

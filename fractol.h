@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 15:22:09 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:45:50 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h> //for write
 # include <math.h>
 # include <X11/X.h>
+# include <X11/keysym.h>
 # include "minilibx-linux/mlx.h"
 
 # define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
@@ -58,6 +59,8 @@ typedef struct	s_fractal
 	//hooks
 	double	escape_value; //hypoyenuse
 	int		iterations_definition; //affects image quality and speed
+	double	shift_x;
+	double	shift_y;
 }				t_fractal;
 
 //string utils
@@ -73,5 +76,7 @@ t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
 //hooks events
 int	key_handler(int keysym, t_fractal *fractal);
+//clean up
+int	close_handler(t_fractal *fractal);
 
 #endif
