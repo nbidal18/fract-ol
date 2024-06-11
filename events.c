@@ -14,18 +14,19 @@ int	key_handler(int keysym, t_fractal *fractal)
 	if (keysym == XK_Escape)
 		close_handler(fractal);
 	if (keysym == XK_Left)
-		fractal->shift_x += 0.5;
+		fractal->shift_x += (0.5 * fractal->zoom);
 	else if (keysym == XK_Right)
-		fractal->shift_x -= 0.5;
+		fractal->shift_x -= (0.5 * fractal->zoom);
 	else if (keysym == XK_Up)
-		fractal->shift_y -= 0.5;
+		fractal->shift_y -= (0.5 * fractal->zoom);
 	else if (keysym == XK_Down)
-		fractal->shift_y += 0.5;
+		fractal->shift_y += (0.5 * fractal->zoom);
 	else if (keysym == XK_plus)
 		fractal->iterations_definition += 10;
 	else if (keysym == XK_minus)	
 		fractal->iterations_definition -= 10;
-	/* zoom with keyboard
+	// zoom with keyboard
+	/*
 	else if (keysym == XK_i)	
 		fractal->zoom *= 0.95;
 	else if (keysym == XK_o)	
