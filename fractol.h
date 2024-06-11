@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 15:45:50 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:03:26 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_fractal
 	int		iterations_definition; //affects image quality and speed
 	double	shift_x;
 	double	shift_y;
+	double	zoom;
 }				t_fractal;
 
 //string utils
@@ -76,6 +77,7 @@ t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
 //hooks events
 int	key_handler(int keysym, t_fractal *fractal);
+int	mouse_handler(int button, int x, int y, t_fractal *fractal);
 //clean up
 int	close_handler(t_fractal *fractal);
 
