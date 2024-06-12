@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:43:58 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 15:51:26 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:20:54 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	main(int argc, char **argv)
 			fractal.julia_x = atod(argv[2]);
 			fractal.julia_y = atod(argv[3]);
 		}
-		fractal_init(&fractal);
-		fractal_render(&fractal);
+		init_fractal(&fractal);
+		render_fractal(&fractal);
 		mlx_loop(fractal.mlx_connection);
 	}
 	else
 	{
-		putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
+		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

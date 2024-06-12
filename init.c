@@ -6,11 +6,32 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:35:03 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 15:49:59 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:30:15 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	init_events(t_fractal *fractal)
+{
+	mlx_hook(fractal->mlx_window, KeyPress,
+		KeyPressMask, keyboard_handler, fractal);
+	mlx_hook(fractal->mlx_window, ButtonPress,
+		ButtonPressMask, mouse_handler, fractal);
+	mlx_hook(fractal->mlx_window, DestroyNotify,
+		StructureNotifyMask, quit_handler, fractal);
+	mlx_hook(fractal->mlx_window, MotionNotify,
+		PointerMotionMask, julia_mouse_handler, fractal);
+}
+
+static void	init_data(t_fractal *fractal)
+{
+	fractal->max_hypotenuse = 4;
+	fractal->definition = 42;
+	fractal->shift_x = 0.0;
+	fractal->shift_y = 0.0;
+	fractal->zoom = 1;
+}
 
 static void	malloc_error(void)
 {
@@ -18,28 +39,7 @@ static void	malloc_error(void)
 	exit(EXIT_FAILURE);
 }
 
-static void	data_init(t_fractal *fractal)
-{
-	fractal->escape_value = 4;
-	fractal->iterations_definition = 42;
-	fractal->shift_x = 0.0;
-	fractal->shift_y = 0.0;
-	fractal->zoom = 1;
-}
-
-static void	events_init(t_fractal *fractal)
-{
-	mlx_hook(fractal->mlx_window, KeyPress,
-		KeyPressMask, key_handler, fractal);
-	mlx_hook(fractal->mlx_window, ButtonPress,
-		ButtonPressMask, mouse_handler, fractal);
-	mlx_hook(fractal->mlx_window, DestroyNotify,
-		StructureNotifyMask, close_handler, fractal);
-	mlx_hook(fractal->mlx_window, MotionNotify,
-		PointerMotionMask, julia_track, fractal);
-}
-
-void	fractal_init(t_fractal *fractal)
+void	init_fractal(t_fractal *fractal)
 {
 	fractal->mlx_connection = mlx_init();
 	if (fractal->mlx_connection == NULL)
@@ -64,6 +64,6 @@ void	fractal_init(t_fractal *fractal)
 	fractal->image.pixel_ptr = mlx_get_data_addr(fractal->image.image_ptr,
 			&fractal->image.bits_per_pixel,
 			&fractal->image.line_len, &fractal->image.endian);
-	events_init(fractal);
-	data_init(fractal);
+	init_events(fractal);
+	init_data(fractal);
 }

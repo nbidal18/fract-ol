@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 16:04:17 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:47:26 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@
 # define WIDTH	1000
 # define HEIGHT	1000
 
-# define RED				0xFF0000
-# define GREEN				0x00FF00
-# define BLUE				0x0000FF
-# define WHITE				0xFFFFFF
-# define BLACK				0x000000
+# define RED	0xFF0000
+# define GREEN	0x00FF00
+# define BLUE	0x0000FF
+# define WHITE	0xFFFFFF
+# define BLACK	0x000000
 
-typedef struct s_complex
+typedef struct s_complex_n
 {
 	double	x;
 	double	y;
-}				t_complex;
+}				t_complex_n;
 
 typedef struct s_image
 {
@@ -54,8 +54,8 @@ typedef struct s_fractal
 	void	*mlx_connection;
 	void	*mlx_window;
 	t_image	image;
-	double	escape_value;
-	int		iterations_definition;
+	double	max_hypotenuse;
+	int		definition;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
@@ -63,18 +63,18 @@ typedef struct s_fractal
 	double	julia_y;
 }				t_fractal;
 
-int			ft_strncmp(char *str1, char *str2, int len);
-void		putstr_fd(char *str, int fd);
-double		atod(char *s);
-void		fractal_init(t_fractal *fractal);
-void		fractal_render(t_fractal *fractal);
-double		map(double unscaled_num, double new_min,
-				double new_max, double old_max);
-t_complex	sum_complex(t_complex z1, t_complex z2);
-t_complex	square_complex(t_complex z);
-int			key_handler(int keysym, t_fractal *fractal);
-int			mouse_handler(int button, int x, int y, t_fractal *fractal);
-int			julia_track(int x, int y, t_fractal *fractal);
-int			close_handler(t_fractal *fractal);
+int				ft_strncmp(char *str1, char *str2, int len);
+void			ft_putstr_fd(char *str, int fd);
+double			atod(char *s);
+void			init_fractal(t_fractal *fractal);
+void			render_fractal(t_fractal *fractal);
+double			scale(double og_num, double new_min,
+					double new_max, double old_max);
+t_complex_n		sum_complex(t_complex_n z1, t_complex_n z2);
+t_complex_n		square_complex(t_complex_n z);
+int				keyboard_handler(int keysym, t_fractal *fractal);
+int				mouse_handler(int button, int x, int y, t_fractal *fractal);
+int				julia_mouse_handler(int x, int y, t_fractal *fractal);
+int				quit_handler(t_fractal *fractal);
 
 #endif

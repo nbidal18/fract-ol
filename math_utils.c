@@ -6,31 +6,31 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:21:45 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 16:04:08 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:47:38 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	map(double unscaled_num, double new_min, double new_max, double old_max)
+double	scale(double og_num, double new_min, double new_max, double old_max)
 {
-	return ((new_max - new_min) * (unscaled_num - 0) / (old_max - 0) + new_min);
+	return (((new_max - new_min) * (og_num - 0) / (old_max - 0)) + new_min);
 }
 
-t_complex	sum_complex(t_complex z1, t_complex z2)
+t_complex_n	sum_complex(t_complex_n z1, t_complex_n z2)
 {
-	t_complex	result;
+	t_complex_n	res;
 
-	result.x = z1.x + z2.x;
-	result.y = z1.y + z2.y;
-	return (result);
+	res.x = z1.x + z2.x;
+	res.y = z1.y + z2.y;
+	return (res);
 }
 
-t_complex	square_complex(t_complex z)
+t_complex_n	square_complex(t_complex_n z)
 {
-	t_complex	result;
+	t_complex_n	res;
 
-	result.x = (z.x * z.x) - (z.y * z.y);
-	result.y = 2 * z.x * z.y;
-	return (result);
+	res.x = (z.x * z.x) - (z.y * z.y);
+	res.y = 2 * z.x * z.y;
+	return (res);
 }

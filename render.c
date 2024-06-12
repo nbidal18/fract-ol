@@ -6,13 +6,13 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:09:37 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 15:54:30 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:48:05 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	my_pixel_put(int x, int y, t_image *image, int color)
+static void	color_pixel(int x, int y, t_image *image, int color)
 {
 	int	offset;
 
@@ -20,7 +20,7 @@ static void	my_pixel_put(int x, int y, t_image *image, int color)
 	*(unsigned int *)(image->pixel_ptr + offset) = color;
 }
 
-static void	mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal)
+static void	mandel_or_julia(t_complex_n *z, t_complex_n *c, t_fractal *fractal)
 {
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
@@ -36,30 +36,30 @@ static void	mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal)
 
 static void	handle_pixel(int x, int y, t_fractal *fractal)
 {
-	t_complex	z;
-	t_complex	c;
-	int			i;
-	int			color;
+	t_complex_n		z;
+	t_complex_n		c;
+	int				i;
+	int				color;
 
 	i = 0;
-	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_x;
-	z.y = (map(y, 2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+	z.x = (scale(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_x;
+	z.y = (scale(y, 2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
 	mandel_or_julia(&z, &c, fractal);
-	while (i < fractal->iterations_definition)
+	while (i < fractal->definition)
 	{
 		z = sum_complex(square_complex(z), c);
-		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
+		if ((z.x * z.x) + (z.y * z.y) > fractal->max_hypotenuse)
 		{
-			color = map(i, BLACK, WHITE, fractal->iterations_definition);
-			my_pixel_put(x, y, &fractal->image, color);
+			color = scale(i, BLACK, WHITE, fractal->definition);
+			color_pixel(x, y, &fractal->image, color);
 			return ;
 		}
 		i++;
 	}
-	my_pixel_put(x, y, &fractal->image, WHITE);
+	color_pixel(x, y, &fractal->image, WHITE);
 }
 
-void	fractal_render(t_fractal *fractal)
+void	render_fractal(t_fractal *fractal)
 {
 	int	x;
 	int	y;
