@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 14:51:43 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 15:19:05 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h> //for malloc and free
 # include <unistd.h> //for write
 # include <math.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
+# include <X11/X.h> //for XK_... names
+# include <X11/keysym.h> //for keysym names
 # include "minilibx-linux/mlx.h"
 
 # define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
@@ -44,7 +44,7 @@ typedef struct	s_image
 	void	*image_ptr; //pointer to image struct
 	char	*pixel_ptr; //pointer to the actual pixels
 	int		bits_per_pixel;
-	int		endian;
+	int		endian; //unused
 	int		line_len;
 }				t_image;
 
@@ -57,7 +57,7 @@ typedef struct	s_fractal
 	//image
 	t_image	image;
 	//hooks
-	double	escape_value; //hypoyenuse
+	double	escape_value; //hypotenuse
 	int		iterations_definition; //affects image quality and speed
 	double	shift_x;
 	double	shift_y;

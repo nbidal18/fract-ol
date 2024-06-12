@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:14 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 14:40:21 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 15:29:35 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ double	atod(char *s)
 {
 	long	integer_part;
 	double	fractional_part;
-	double	pow;
+	double	power;
 	int		sign;
 
 	integer_part = 0;
 	fractional_part = 0;
 	sign = +1;
-	pow = 1;
+	power = 1;
 	while ((*s >= 9 && *s <= 13) || 32 == *s)
 		++s;
 	while ('+' == *s || '-' == *s)
@@ -58,12 +58,12 @@ double	atod(char *s)
 		++s;
 	while (*s)
 	{
-		pow /= 10;
-		fractional_part = fractional_part + (*s++ - 48) * pow;
+		power /= 10;
+		fractional_part = fractional_part + (*s++ - 48) * power;
 	}
 	return ((integer_part + fractional_part) * sign);
 }
-/*//FIX not working smh
+/*//FIX works but too many lines
 double	atod(char *s)
 {
 	long	integer_part;
@@ -74,6 +74,7 @@ double	atod(char *s)
 	integer_part = 0;
 	fractional_part = 0;
 	sign = +1;
+	power = 1;
 	while ((*s >= 9 && *s <= 13) || *s == 32)
 		s++;
 	while (*s == '+' || *s == '-') //can't remove the +? //FIX
@@ -91,5 +92,4 @@ double	atod(char *s)
 		fractional_part = fractional_part + (*s++ - 48) * power;
 	}
 	return ((integer_part + fractional_part) * sign);
-}
-*/
+}*/
