@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:33:27 by nbidal            #+#    #+#             */
+/*   Updated: 2024/06/12 15:45:02 by nbidal           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-//simpy to close without leaks, both for ESC and for X on the window
 int	close_handler(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_connection, fractal->image.image_ptr);
@@ -24,24 +35,16 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->shift_y += (0.5 * fractal->zoom);
 	else if (keysym == XK_plus)
 		fractal->iterations_definition += 10;
-	else if (keysym == XK_minus)	
+	else if (keysym == XK_minus)
 		fractal->iterations_definition -= 10;
-	/* zoom with keyboard
-	else if (keysym == XK_i)	
-		fractal->zoom *= 0.95;
-	else if (keysym == XK_o)	
-		fractal->zoom *= 1.05;*/
-	//refresh the image
 	fractal_render(fractal);
 	return (0);
 }
 
 int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
-	//zoom in
 	if (button == Button5)
 		fractal->zoom *= 0.95;
-	//zoom out
 	else if (button == Button4)
 		fractal->zoom *= 1.05;
 	fractal_render(fractal);
@@ -50,11 +53,12 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 
 int	julia_track(int x, int y, t_fractal *fractal)
 {
-	//to change the values accordingly to the mouse position //FIX how does it work tho
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
-		fractal->julia_x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_x;
-		fractal->julia_y = (map(y, 2, +2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		fractal->julia_x = (map(x, -2, 2, WIDTH) * fractal->zoom)
+			+ fractal->shift_x;
+		fractal->julia_y = (map(y, 2, +2, HEIGHT) * fractal->zoom)
+			+ fractal->shift_y;
 	}
 	fractal_render(fractal);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:14 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 15:29:35 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 15:59:08 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,41 +47,11 @@ double	atod(char *s)
 	fractional_part = 0;
 	sign = +1;
 	power = 1;
-	while ((*s >= 9 && *s <= 13) || 32 == *s)
-		++s;
-	while ('+' == *s || '-' == *s)
-		if ('-' == *s++)
-			sign = -sign;
-	while (*s != '.' && *s)
-		integer_part = (integer_part * 10) + (*s++ - 48);
-	if ('.' == *s)
-		++s;
-	while (*s)
-	{
-		power /= 10;
-		fractional_part = fractional_part + (*s++ - 48) * power;
-	}
-	return ((integer_part + fractional_part) * sign);
-}
-/*//FIX works but too many lines
-double	atod(char *s)
-{
-	long	integer_part;
-	double	fractional_part;
-	double	power;
-	int		sign;
-
-	integer_part = 0;
-	fractional_part = 0;
-	sign = +1;
-	power = 1;
 	while ((*s >= 9 && *s <= 13) || *s == 32)
 		s++;
-	while (*s == '+' || *s == '-') //can't remove the +? //FIX
-	{
-		if (*s == '-')
+	while (*s == '-')
+		if (*s++ == '-')
 			sign = -sign;
-	}
 	while (*s != '.' && *s)
 		integer_part = (integer_part * 10) + (*s++ - 48);
 	if (*s == '.')
@@ -92,4 +62,4 @@ double	atod(char *s)
 		fractional_part = fractional_part + (*s++ - 48) * power;
 	}
 	return ((integer_part + fractional_part) * sign);
-}*/
+}
