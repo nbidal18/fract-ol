@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:09:37 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 14:25:01 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 14:35:05 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@ static void	my_pixel_put(int x, int y, t_image *image, int color)
 	*(unsigned int *)(image->pixel_ptr + offset) = color;
 }
 
+static void	mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal)
+{
+	//if julia
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		c->x = fractal->julia_x;
+		c->y = fractal->julia_y;
+	}
+	//if mandel
+	else
+	{
+		c->x = z->x;
+		c->y = z->y;
+	}
+}
+
 static void	handle_pixel(int x, int y, t_fractal *fractal)
 {
 	t_complex	z;
@@ -28,14 +44,10 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	int			color;
 	
 	i = 0;
-	//first iteration
-	/*FIX to remove, but I didn't understand why (1:56:17)
-	z.x = 0;
-	z.y = 0;
-	*/
 	//pixel coordinate x && y scaled
 	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_x; //WIDTH is 800, but shouldn't it be 799? //FIX
 	z.y = (map(y, 2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y; //same here
+	mandel_or_julia(&z, &c, fractal);
 	//how many times do we iterate z^2 + c
 	while(i < fractal->iterations_definition)
 	{
