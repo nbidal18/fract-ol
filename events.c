@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:33:27 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 16:56:22 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:58:37 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ int	keyboard_handler(int keysym, t_fractal *fractal)
 		fractal->shift_x += (0.5 * fractal->zoom);
 	else if (keysym == XK_Right)
 		fractal->shift_x -= (0.5 * fractal->zoom);
-	/*else if (keysym == XK_i)	
-		fractal->zoom *= 0.95;
-	else if (keysym == XK_o)	
-		fractal->zoom *= 1.05;
-	else if (keysym == XK_d)	
-		fractal->zoom = 1.00;*/
 	render_fractal(fractal);
 	return (0);
 }
