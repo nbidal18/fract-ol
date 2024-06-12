@@ -6,12 +6,19 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:09:37 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 16:48:05 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 17:25:02 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*//TODO
+I don't understand what does this offset do,
+I guess it's to locate the correct pixel?
+How does it use the offset in said case?
+Can't we just use x and y to locate it?
+8 is the size of a byte
+[ ] study this render.c file*/
 static void	color_pixel(int x, int y, t_image *image, int color)
 {
 	int	offset;

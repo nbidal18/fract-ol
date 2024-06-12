@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:14 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 16:45:08 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 17:34:48 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,38 @@ void	ft_putstr_fd(char *str, int fd)
 	}
 }
 
+/*STEPS
+1. skip spaces and various non printable characters
+2. if "-" is found, then set sign to negative
+3. for the integer part, as long as it doesn't reach a "." and the value exists,
+turn it into a double and add it to the integer
+4. once it goes past the "." we are dealing with the fractional,
+with the index becoming 0.1, 0.01, 0.001, ecc...
+makes the numbers add up in the proper way*/
 double	atod(char *s)
 {
-	long	integer_part;
-	double	fractional_part;
-	double	power;
+	long	integer;
+	double	fractional;
+	double	index;
 	int		sign;
 
-	integer_part = 0;
-	fractional_part = 0;
+	integer = 0;
+	fractional = 0;
 	sign = +1;
-	power = 1;
+	index = 1;
 	while ((*s >= 9 && *s <= 13) || *s == 32)
 		s++;
 	while (*s == '-')
 		if (*s++ == '-')
 			sign = -sign;
 	while (*s != '.' && *s)
-		integer_part = (integer_part * 10) + (*s++ - 48);
+		integer = (integer * 10) + (*s++ - 48);
 	if (*s == '.')
 		s++;
 	while (*s)
 	{
-		power /= 10;
-		fractional_part = fractional_part + (*s++ - 48) * power;
+		index /= 10;
+		fractional = fractional + (*s++ - 48) * index;
 	}
-	return ((integer_part + fractional_part) * sign);
+	return ((integer + fractional) * sign);
 }
