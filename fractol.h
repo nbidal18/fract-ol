@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/11 16:03:26 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/12 14:20:21 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,26 @@ typedef struct	s_fractal
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
+	double	julia_x;
+	double	julia_y;
 }				t_fractal;
 
 //string utils
-int		ft_strncmp(char *str1, char *str2, int len);
-void	putstr_fd(char *str, int fd);
+int			ft_strncmp(char *str1, char *str2, int len);
+void		putstr_fd(char *str, int fd);
+double		atod(char *s);
 //init
-void	fractal_init(t_fractal *fractal);
+void		fractal_init(t_fractal *fractal);
 //render
-void	fractal_render(t_fractal *fractal);
+void		fractal_render(t_fractal *fractal);
 //math utils
-double map(double unscaled_num, double new_min, double new_max, double old_max);
+double 		map(double unscaled_num, double new_min, double new_max, double old_max);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
 //hooks events
-int	key_handler(int keysym, t_fractal *fractal);
-int	mouse_handler(int button, int x, int y, t_fractal *fractal);
+int			key_handler(int keysym, t_fractal *fractal);
+int			mouse_handler(int button, int x, int y, t_fractal *fractal);
 //clean up
-int	close_handler(t_fractal *fractal);
+int			close_handler(t_fractal *fractal);
 
 #endif
