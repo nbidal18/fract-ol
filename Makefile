@@ -1,1 +1,2 @@
+#compile command
 gcc *.c -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o fractol
