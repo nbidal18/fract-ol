@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 16:47:26 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:26:32 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <X11/keysym.h>
 # include "minilibx-linux/mlx.h"
 
-# define ERROR_MESSAGE "Use either \n\t\"./fractol mandelbrot\"\\\
- or \n\t\"./fractol julia <value_1> <value_2>\"\n"
+# define ERROR_MESSAGE "Use either \"./fractol mandelbrot\"\\\
+ or \"./fractol julia <value_1> <value_2>\"\n"
 
 # define WIDTH	1000
 # define HEIGHT	1000

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_handlers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:33:27 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/13 09:20:36 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:38:46 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	quit_handler(t_fractal *fractal)
 
 int	keyboard_handler(int keysym, t_fractal *fractal)
 {
-	if (keysym == XK_Escape || keysym == XK_plus || keysym == XK_minus
+	if (keysym == XK_Escape || keysym == XK_KP_Add || keysym == XK_KP_Subtract
 		|| keysym == XK_Up || keysym == XK_Down || keysym == XK_Left
 		|| keysym == XK_Right || keysym == XK_i || keysym == XK_o)
 	{
 		if (keysym == XK_Escape)
 			quit_handler(fractal);
-		if (keysym == XK_plus)
+		if (keysym == XK_KP_Add)
 			fractal->definition += 10;
-		else if (keysym == XK_minus)
+		else if (keysym == XK_KP_Subtract)
 			fractal->definition -= 10;
 		else if (keysym == XK_Up)
 			fractal->shift_y -= (0.5 * fractal->zoom);
@@ -47,6 +47,8 @@ int	keyboard_handler(int keysym, t_fractal *fractal)
 			fractal->zoom *= 1.05;
 		render_fractal(fractal);
 	}
+	else
+		printf("%d\n", keysym);
 	return (0);
 }
 
