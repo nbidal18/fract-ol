@@ -5,6 +5,8 @@
 	- norminette
 	- remove useless comments
 	- re-read the code
+	- remove readme
+	- remove bash commands
 
 ## Description
 **fract-ol** is a project focused on exploring and visualizing fractals. It allows users to generate and manipulate various fractal patterns using different parameters and rendering techniques.
