@@ -6,13 +6,13 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:43:58 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/13 14:12:44 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:31:43 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//mlx_loop() keeps the window alive listening for events
+// mlx_loop() keeps the window alive listening for events
 int	main(int argc, char **argv)
 {
 	t_fractal	fractal;

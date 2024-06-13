@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:14 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/12 17:34:48 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:34:42 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	ft_putstr_fd(char *str, int fd)
 	}
 }
 
-/*STEPS
+/* EXPLANATION
 1. skip spaces and various non printable characters
 2. if "-" is found, then set sign to negative
 3. for the integer part, as long as it doesn't reach a "." and the value exists,
-turn it into a double and add it to the integer
+	turn it into a double and add it to the integer
 4. once it goes past the "." we are dealing with the fractional,
-with the index becoming 0.1, 0.01, 0.001, ecc...
-makes the numbers add up in the proper way*/
+	with the index becoming 0.1, 0.01, 0.001, ecc...
+	makes the numbers add up in the proper way*/
 double	atod(char *s)
 {
 	long	integer;

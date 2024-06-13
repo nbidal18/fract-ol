@@ -1,19 +1,19 @@
 # Variables
-CC = gcc
+CC = cc
 CFLAGS = -Werror -Wall
 
 MINILIBX_URL = https://github.com/42Paris/minilibx-linux.git
 MINILIBX_FOLDER = minilibx-linux
 MINILIBX_COMMAND = -L$(MINILIBX_FOLDER) -lmlx_Linux -lX11 -lXext
 
-EXECUTABLE = fractol
+NAME = fractol
 
 HEADER = fractol.h
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 # Default target
-all: $(MINILIBX_FOLDER) $(EXECUTABLE)
+all: $(MINILIBX_FOLDER) $(NAME)
 
 # Clone and build minilibx
 $(MINILIBX_FOLDER):
@@ -22,8 +22,8 @@ $(MINILIBX_FOLDER):
 	clear
 
 # Link the object files to create the executable
-$(EXECUTABLE): $(OBJS)
-	$(CC) $(OBJS) $(MINILIBX_COMMAND) $(CFLAGS) -o $(EXECUTABLE)
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(MINILIBX_COMMAND) $(CFLAGS) -o $(NAME)
 	clear
 
 # Compile each source file into an object file
@@ -38,7 +38,7 @@ clean:
 
 # Full clean
 fclean: clean
-	rm -rf $(MINILIBX_FOLDER) $(EXECUTABLE)
+	rm -rf $(MINILIBX_FOLDER) $(NAME)
 	clear
 
 # Rebuild target
