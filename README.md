@@ -14,11 +14,14 @@ Once the window opens, you can use the following keybinds:
 
 | Input | Action |
 |-|-|
-| `↑` `↓` `←` `→` | Move the fractal |
+| `↑` `↓` `←` `→` | Move the fractal around |
 | `I` `O` `mouseWheel` | Zoom in and zoom out |
-| `+` `-` | Increase and lower the definition |
+| `+` `-` | Increase and lower the definition, affects performance |
 | `❌` `ESC` | Close the window |
-| `mousePointer` | Only for Julia: the fractal mutes based on the position of the curson on the window taking the x and the y as the two values for the render |
+| `mouseRightClick` | **Only for Julia**: as long as it's pressed, the fractal dynamically changes based on the position of the cursor on the window taking the x and the y as the two values for the render |
+
+Note: the `+` and `-` buttons are set to work with the numpad ones. If you wish to use the "normal ones" then go inside of `events_handler.c`, then read the comment above the function `keyboard_handler()`.\
+I can't just add it myself because then Norminette either says "line too long" or "function exceeds 25 lines".
 
 ## Grade
 Still doing the project.
