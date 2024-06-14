@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:33:27 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/13 15:44:43 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/14 16:14:08 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	quit_handler(t_fractal *fractal)
 	exit(EXIT_SUCCESS);
 }
 
+/* if you don't have a numpad with + and - then swap
+		keysym == XK_KP_Add || keysym == XK_KP_Subtract
+	with
+		keysym == XK_plus || keysym == XK_minus 
+	and it will work the the standard + and - on most keyboards*/
 int	keyboard_handler(int keysym, t_fractal *fractal)
 {
 	if (keysym == XK_Escape || keysym == XK_KP_Add || keysym == XK_KP_Subtract
@@ -29,9 +34,9 @@ int	keyboard_handler(int keysym, t_fractal *fractal)
 	{
 		if (keysym == XK_Escape)
 			quit_handler(fractal);
-		if (keysym == XK_KP_Add)
+		if (keysym == XK_KP_Add || keysym == XK_plus)
 			fractal->definition += 10;
-		else if (keysym == XK_KP_Subtract)
+		else if (keysym == XK_KP_Subtract || keysym == XK_minus)
 			fractal->definition -= 10;
 		else if (keysym == XK_Up)
 			fractal->shift_y -= (0.5 * fractal->zoom);
@@ -50,7 +55,7 @@ int	keyboard_handler(int keysym, t_fractal *fractal)
 	return (0);
 }
 
-int	mouse_handler(int button, int x, int y, t_fractal *fractal)
+int	mouse_handler_press(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == Button4 || button == Button5)
 	{
@@ -60,12 +65,21 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 			fractal->zoom *= 0.95;
 		render_fractal(fractal);
 	}
+	if (button == Button3)
+		fractal->julia_dynamic = 1;
+	return (0);
+}
+
+int	mouse_handler_release(int button, int x, int y, t_fractal *fractal)
+{
+	if (button == Button3)
+		fractal->julia_dynamic = 0;
 	return (0);
 }
 
 int	julia_mouse_handler(int x, int y, t_fractal *fractal)
 {
-	if (!ft_strncmp(fractal->name, "julia", 5))
+	if (!ft_strncmp(fractal->name, "julia", 5) && fractal->julia_dynamic == 1)
 	{
 		fractal->julia_x = (scale(x, -2, 2, WIDTH) * fractal->zoom)
 			+ fractal->shift_x;

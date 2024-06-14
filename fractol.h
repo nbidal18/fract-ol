@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:44:19 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/13 15:42:17 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/14 16:05:24 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_fractal
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
+	int		julia_dynamic;
 	double	julia_x;
 	double	julia_y;
 }				t_fractal;
@@ -73,7 +74,10 @@ double			scale(double og_num, double new_min,
 t_complex_n		sum_complex(t_complex_n z1, t_complex_n z2);
 t_complex_n		square_complex(t_complex_n z);
 int				keyboard_handler(int keysym, t_fractal *fractal);
-int				mouse_handler(int button, int x, int y, t_fractal *fractal);
+int				mouse_handler_press(int button, int x,
+					int y, t_fractal *fractal);
+int				mouse_handler_release(int button, int x,
+					int y, t_fractal *fractal);
 int				julia_mouse_handler(int x, int y, t_fractal *fractal);
 int				quit_handler(t_fractal *fractal);
 

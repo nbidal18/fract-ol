@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:35:03 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/13 15:44:37 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/14 15:59:26 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static void	init_events(t_fractal *fractal)
 	mlx_hook(fractal->mlx_window, KeyPress,
 		KeyPressMask, keyboard_handler, fractal);
 	mlx_hook(fractal->mlx_window, ButtonPress,
-		ButtonPressMask, mouse_handler, fractal);
+		ButtonPressMask, mouse_handler_press, fractal);
+	mlx_hook(fractal->mlx_window, ButtonRelease,
+		ButtonReleaseMask, mouse_handler_release, fractal);
 	mlx_hook(fractal->mlx_window, DestroyNotify,
 		StructureNotifyMask, quit_handler, fractal);
 	mlx_hook(fractal->mlx_window, MotionNotify,
@@ -31,6 +33,7 @@ static void	init_data(t_fractal *fractal)
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1;
+	fractal->julia_dynamic = 0;
 }
 
 static void	malloc_error(void)
