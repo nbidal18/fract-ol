@@ -4,7 +4,7 @@
 **fract-ol** is a project focused on exploring and visualizing fractals. It allows users to generate and manipulate various fractal patterns using different parameters and rendering techniques.
 
 ## Usage
-1. Clone the repo on your machine;
+1. Clone the repo on your Linux machine;
 2. Run `make`, this will also clone the mini-libx for Linux;
 3. To start the program, run `./fractol mandelbrot` or `./fractol julia -0.8 0.156`
 	- Note: these values for Julia are just an example;
