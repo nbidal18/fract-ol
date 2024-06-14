@@ -6,7 +6,7 @@
 ## Usage
 1. Clone the repo on your Linux machine;
 2. Run `make`, this will also clone the mini-libx for Linux;
-3. To start the program, run `./fractol mandelbrot` or `./fractol julia -0.8 0.156`
+3. To start the program, run `./fractol Mandelbrot` or `./fractol Julia -0.8 0.156`
 	- Note: these values for Julia are just an example;
 	- Julia will render differently based on the values you give it.
 

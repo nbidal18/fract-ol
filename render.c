@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:09:37 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/13 15:34:08 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/14 16:36:30 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	color_pixel(int x, int y, t_image *image, int color)
 
 static void	mandel_or_julia(t_complex_n *z, t_complex_n *c, t_fractal *fractal)
 {
-	if (!ft_strncmp(fractal->name, "julia", 5))
+	if (!ft_strncmp(fractal->name, "Julia", 5))
 	{
 		c->x = fractal->julia_x;
 		c->y = fractal->julia_y;

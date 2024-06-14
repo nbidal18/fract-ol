@@ -6,7 +6,7 @@
 /*   By: nbidal <nbidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:33:27 by nbidal            #+#    #+#             */
-/*   Updated: 2024/06/14 16:14:08 by nbidal           ###   ########.fr       */
+/*   Updated: 2024/06/14 16:36:07 by nbidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	mouse_handler_release(int button, int x, int y, t_fractal *fractal)
 
 int	julia_mouse_handler(int x, int y, t_fractal *fractal)
 {
-	if (!ft_strncmp(fractal->name, "julia", 5) && fractal->julia_dynamic == 1)
+	if (!ft_strncmp(fractal->name, "Julia", 5) && fractal->julia_dynamic == 1)
 	{
 		fractal->julia_x = (scale(x, -2, 2, WIDTH) * fractal->zoom)
 			+ fractal->shift_x;
