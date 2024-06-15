@@ -10,7 +10,7 @@
 	- Note: these values for Julia are just an example;
 	- Julia will render differently based on the values you give it.
 
-Once the window opens, you can use the following keybinds:
+Once the window opens, you can use the following controls:
 
 | Input | Action |
 |-|-|
