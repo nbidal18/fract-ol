@@ -1,4 +1,4 @@
-a# Variables
+# Variables
 CC = cc
 CFLAGS = -Werror -Wall
 
