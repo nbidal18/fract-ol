@@ -24,4 +24,4 @@ Note: the `+` and `-` buttons are set to work with the numpad ones. If you wish 
 I can't just add it myself because then Norminette either says "line too long" or "function exceeds 25 lines".
 
 ## Grade
-Still doing the project.
+I didn't do the Bonus part so I got **100**.
